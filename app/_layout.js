@@ -1,3 +1,4 @@
+
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './home';
@@ -86,3 +87,4 @@ export default function RootLayout() {
         </Drawer.Navigator>
     );
 }
+
