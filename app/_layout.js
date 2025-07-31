@@ -1,126 +1,88 @@
-import { Drawer } from "expo-router/drawer";
-import IonIcons from "react-native-vector-icons/Ionicons";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import Entypo from '@expo/vector-icons/Entypo';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Home from './home';
+import Deuses from './deuses';
+import { Image } from 'react-native';
+import MyIcon from '../assets/images/kratos.png';
+import gods from '../assets/images/deus.png';
+import itens from '../assets/images/mochila.png';
+import form from '../assets/images/formulario-de-contato.png';
 
-export default function Layout() {
+const Drawer = createDrawerNavigator();
+
+export default function RootLayout() {
+    // Primeiro, importe o componente Image e a imagem desejada no topo do arquivo:
+
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <Drawer>
-                <Drawer.Screen
-                    name="home"
-                    options={{
-                        drawerLabel: "Inicio",
-                        title: "Home",
-                        headerShown: false,
-                        headerLeft: true,
-                        drawerIcon: ({ size, color }) => (
-                            <IonIcons name="home" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="annotations"
-                    options={{
-                        drawerLabel: "Anotações",
-                        title: "Anotações",
-                        drawerIcon: ({ size, color }) => (
-                            <MaterialIcons name="notes" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="consultation"
-                    options={{
-                        drawerLabel: "Consultas",
-                        title: "Consultas",
-                        drawerIcon: ({ size, color }) => (
-                            <IonIcons name="medkit" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="contacts"
-                    options={{
-                        drawerLabel: "Contatos",
-                        title: "Contatos",
-                        drawerIcon: ({ size, color }) => (
-                            <AntDesign name="contacts" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="addresses"
-                    options={{
-                        drawerLabel: "Endereços",
-                        title: "Endereços",
-                        drawerIcon: ({ size, color }) => (
-                            <Entypo name="address" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="tasks"
-                    options={{
-                        drawerLabel: "Tarefas",
-                        title: "Tarefas",
-                        drawerIcon: ({ size, color }) => (
-                            <FontAwesome5 name="tasks" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="settings"
-                    options={{
-                        drawerLabel: "Configurações",
-                        title: "Configurações",
-                        drawerIcon: ({ size, color }) => (
-                            <IonIcons name="settings" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="user"
-                    options={{
-                        drawerLabel: "Perfil",
-                        title: "Perfil",
-                        drawerIcon: ({ size, color }) => (
-                            <AntDesign name="user" size={size} color={color} />
-                        ),
-                    }}
-                />
-                <Drawer.Screen
-                    name="register"
-                    options={{
-                        drawerLabel: "register",
-                        title: "register",
-                        drawerItemStyle: { display: 'none' },
-                        headerShown: false,
-                    }}
-
-                />
-                <Drawer.Screen
-                    name="login"
-                    options={{
-                        drawerLabel: "login",
-                        title: "login",
-                        drawerItemStyle: { display: 'none' },
-                        headerShown: false,
-                    }}
-                />
-                <Drawer.Screen
-                    name="index"
-                    options={{
-                        drawerLabel: "index",
-                        title: "index",
-                        drawerItemStyle: { display: 'none' },
-                        headerShown: false,
-                    }}
-                />
-            </Drawer>
-        </GestureHandlerRootView>
+        <Drawer.Navigator
+            screenOptions={{
+                headerShown: false,
+                drawerStyle: {
+                    backgroundColor: '#1a1a1a',
+                },
+                drawerActiveTintColor: '#ff0000ff',
+                drawerInactiveTintColor: '#ffffff',
+                drawerLabelStyle: {
+                    fontWeight: 'bold',
+                },
+            }}
+        >
+            <Drawer.Screen
+                name="home"
+                component={Home}
+                options={{
+                    drawerLabel: "kratos",
+                    title: "Kratos",
+                    drawerIcon: ({ size, color }) => (
+                        <Image
+                            source={MyIcon}
+                            style={{ width: size, height: size, borderRadius: 8 }}
+                        />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="deuses"
+                component={Deuses}
+                options={{
+                    drawerLabel: "Deuses Derrotados",
+                    title: "Deuses",
+                    drawerIcon: ({ size, color }) => (
+                        <Image
+                            source={gods}
+                            style={{ width: size, height: size, borderRadius: 8 }}
+                        />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="itemsFound"
+                component={Deuses}
+                options={{
+                    drawerLabel: "Itens conquistados",
+                    title: "Itens",
+                    drawerIcon: ({ size, color }) => (
+                        <Image
+                            source={itens}
+                            style={{ width: size, height: size, borderRadius: 8 }}
+                        />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="forms"
+                component={Deuses}
+                options={{
+                    drawerLabel: "Formulários",
+                    title: "Fale conosco",
+                    drawerIcon: ({ size, color }) => (
+                        <Image
+                            source={form}
+                            style={{ width: size, height: size, borderRadius: 8 }}
+                        />
+                    ),
+                }}
+            />
+        </Drawer.Navigator>
     );
 }
